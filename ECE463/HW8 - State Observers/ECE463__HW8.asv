@@ -1,0 +1,22 @@
+%% Problem 1
+mcart=1; mball=4; L=1;
+[Kx, Kr] = ObtainCartFeedback(mcart,mball,L, 6,0.1);
+
+%% Problem 2
+A = [0 0 1 0; 0 0 0 1; 0 -39.2 0 0; 0 49 0 0];
+B = [0;0;1;-1];
+C = [1 0 0 0];
+obsPoles = [-3.4,-4,-5,-6];
+
+H = placePoles(A',C',B',obsPoles)
+
+Aaug = [A-B*Kx, zeros(4];
+Baug = [B; B];
+Caug = eye(8,8);
+% Caug = [1 zeros(1,7); zeros(3,8); zeros(1,4), 1, 0 0 0; zeros(3,8) ];
+Daug = zeros(8,1);
+
+% t = linspace(0,6,1001);
+% X0 = [zeros(4,1); rand(4,1)]
+% y = step3(Aaug, Baug, Caug, Daug, t, X0, ones(1,1001));
+% plot(t,y);
